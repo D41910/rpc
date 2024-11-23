@@ -1,0 +1,40 @@
+package com.dsj.example.comsumer;
+
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import com.dsj.example.common.model.User;
+import com.dsj.example.common.service.UserService;
+import com.dsj.rpc.model.RpcRequest;
+import com.dsj.rpc.model.RpcResponse;
+import com.dsj.rpc.serializer.JkdSerializer;
+import com.dsj.rpc.serializer.Serializer;
+
+import java.io.IOException;
+
+public class UserServiceProxy implements UserService {
+    @Override
+    public User getUser(User user) {
+        //指定序列化器
+        Serializer serializer=new JkdSerializer();
+
+        //发送请求
+        RpcRequest rpcRequest=RpcRequest.builder()
+                .serviceName(UserService.class.getName())
+                .methodName("getUser")
+                .parameterTypes(new Class[]{User.class})
+                .args(new Object[]{user})
+                .build();
+        try {
+            byte[] bodyBytes=serializer.serializer(rpcRequest);
+            byte[] result;
+            try (HttpResponse httpResponse=HttpRequest.post("http://localhost:8080").body(bodyBytes).execute()){
+                result= httpResponse.bodyBytes();
+            }
+            RpcResponse rpcResponse=serializer.deserializer(result, RpcResponse.class);
+            return (User) rpcResponse.getData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
