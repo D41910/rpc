@@ -6,7 +6,7 @@ import com.dsj.example.common.model.User;
 import com.dsj.example.common.service.UserService;
 import com.dsj.rpc.model.RpcRequest;
 import com.dsj.rpc.model.RpcResponse;
-import com.dsj.rpc.serializer.JkdSerializer;
+import com.dsj.rpc.serializer.JdkSerializer;
 import com.dsj.rpc.serializer.Serializer;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class UserServiceProxy implements UserService {
     @Override
     public User getUser(User user) {
         //指定序列化器
-        Serializer serializer=new JkdSerializer();
+        Serializer serializer=new JdkSerializer();
 
         //发送请求
         RpcRequest rpcRequest=RpcRequest.builder()

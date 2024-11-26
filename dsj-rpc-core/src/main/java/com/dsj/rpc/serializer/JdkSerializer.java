@@ -2,7 +2,7 @@ package com.dsj.rpc.serializer;
 
 import java.io.*;
 
-public class JkdSerializer implements Serializer{
+public class JdkSerializer implements Serializer{
     /**
      * 序列化
      * @param object

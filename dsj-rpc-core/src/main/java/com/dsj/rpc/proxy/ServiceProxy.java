@@ -4,7 +4,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.dsj.rpc.model.RpcRequest;
 import com.dsj.rpc.model.RpcResponse;
-import com.dsj.rpc.serializer.JkdSerializer;
+import com.dsj.rpc.serializer.JdkSerializer;
 import com.dsj.rpc.serializer.Serializer;
 
 import java.lang.reflect.InvocationHandler;
@@ -23,7 +23,7 @@ public class ServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //指定序列化器
-        Serializer serializer = new JkdSerializer();
+        Serializer serializer = new JdkSerializer();
 
         //构造请求
         RpcRequest rpcRequest = RpcRequest.builder()
