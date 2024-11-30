@@ -2,9 +2,6 @@ package com.dsj.rpc.serializer;
 
 import com.dsj.rpc.spi.SpiLoader;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 序列化工厂（用于获取序列化器对象）
  */

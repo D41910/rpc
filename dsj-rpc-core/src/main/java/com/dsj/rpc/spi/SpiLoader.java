@@ -5,7 +5,6 @@ import com.dsj.rpc.serializer.Serializer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
@@ -33,17 +32,17 @@ public class SpiLoader {
     /**
      * 系统SPI目录
      */
-    public static final String RPC_SYSTEM_SPI_DIR = "META-INF/rpc/system";
+    public static final String RPC_SYSTEM_SPI_DIR = "META-INF/rpc/system/";
 
     /**
      * 用户自定义SPI目录
      */
-    public static final String RPC_CUSTOM_SPI_DIR = "META-INF/rpc/custom";
+    public static final String RPC_CUSTOM_SPI_DIR = "META-INF/rpc/custom/";
 
     /**
      * 扫描路径
      */
-    public static final String[] SCAN_DIRS = new String[]{RPC_CUSTOM_SPI_DIR, RPC_SYSTEM_SPI_DIR};
+    public static final String[] SCAN_DIRS = new String[]{RPC_SYSTEM_SPI_DIR, RPC_CUSTOM_SPI_DIR};
 
     /**
      * 动态加载的类列表
