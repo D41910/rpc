@@ -34,7 +34,7 @@ public class EtcdRegistry implements Registry {
     }
 
     @Override
-    public void registry(ServiceMetaInfo serviceMetaInfo) throws Exception {
+    public void register(ServiceMetaInfo serviceMetaInfo) throws Exception {
         //创建Lease和KV客户端
         Lease leaseClient = client.getLeaseClient();
 
@@ -52,14 +52,13 @@ public class EtcdRegistry implements Registry {
     }
 
     @Override
-    public void unRegistry(ServiceMetaInfo serviceMetaInfo) {
+    public void unRegister(ServiceMetaInfo serviceMetaInfo) {
         kvClient.delete(ByteSequence.from(ETCD_ROOT_PATH + serviceMetaInfo.getServiceNodeKey(), StandardCharsets.UTF_8));
     }
 
     @Override
     public List<ServiceMetaInfo> serviceDiscovery(String serviceKey) {
-        //前缀搜索，结尾一定要加/
-        String searchPrefix = ETCD_ROOT_PATH + serviceKey + "/";
+        String searchPrefix = ETCD_ROOT_PATH + serviceKey ;
         try {
             //前缀查询
             GetOption getOption = GetOption.builder().isPrefix(true).build();
