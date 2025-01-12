@@ -34,7 +34,7 @@ public class ServiceProxyFactory {
      */
     public static <T> T getMockProxy(Class<T> serviceClass) {
         return (T) Proxy.newProxyInstance(
-                serviceClass.getClassLoader(),
+                serviceClass.getClassLoader( ),
                 new Class[]{serviceClass},
                 new MockServiceProxy());
     }

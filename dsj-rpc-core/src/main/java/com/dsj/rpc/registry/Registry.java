@@ -9,6 +9,12 @@ import java.util.List;
  * 注册中心
  */
 public interface Registry {
+
+    /**
+     * 监听（消费者）
+     * @param serviceNodeKey
+     */
+    void watch(String serviceNodeKey);
     /**
      * 初始化
      *
@@ -43,4 +49,9 @@ public interface Registry {
      * 服务销毁
      */
     void destroy();
+
+    /**
+     * 心跳检测（服务端）
+     */
+    void heartBeat();
 }

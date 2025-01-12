@@ -16,7 +16,6 @@ public class ProviderExample {
     public static void main(String[] args) {
         // RPC 框架初始化
         RpcApplication.init();
-
         // 注册服务
         String serviceName = UserService.class.getName();
         LocalRegistry.register(serviceName, UserServiceImpl.class);
