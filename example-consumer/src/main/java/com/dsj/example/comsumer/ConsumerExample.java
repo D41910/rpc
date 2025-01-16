@@ -26,7 +26,7 @@ public class ConsumerExample {
         } else {
             System.out.println("user == null");
         }
-        Thread.sleep(10*1000);
+//        Thread.sleep(10*1000);
         newUser = userService.getUser(user);
         if (newUser != null) {
             System.out.println(newUser.getName());

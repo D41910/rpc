@@ -10,6 +10,7 @@ import com.dsj.rpc.registry.Registry;
 import com.dsj.rpc.registry.RegistryFactory;
 import com.dsj.rpc.server.HttpServer;
 import com.dsj.rpc.server.VertxHttpServer;
+import com.dsj.rpc.server.tcp.VertxTcpServer;
 
 public class ProviderExample {
 
@@ -35,7 +36,11 @@ public class ProviderExample {
         }
 
         // 启动 web 服务
-        HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+//        HttpServer httpServer = new VertxHttpServer();
+//        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        //启动TCP服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8080);
     }
 }
