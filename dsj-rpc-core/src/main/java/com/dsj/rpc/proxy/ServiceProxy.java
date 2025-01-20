@@ -4,6 +4,8 @@ import cn.hutool.core.collection.CollUtil;
 import com.dsj.rpc.RpcApplication;
 import com.dsj.rpc.config.RpcConfig;
 import com.dsj.rpc.constant.RpcConstant;
+import com.dsj.rpc.fault.retry.RetryStrategy;
+import com.dsj.rpc.fault.retry.RetryStrategyFactory;
 import com.dsj.rpc.loadbalancer.LoadBalancer;
 import com.dsj.rpc.loadbalancer.LoadBalancerFactory;
 import com.dsj.rpc.model.RpcRequest;
@@ -33,7 +35,7 @@ public class ServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //指定序列化器
-        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+//        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         //构造请求
         String serviceName = method.getDeclaringClass().getName();
@@ -77,7 +79,9 @@ public class ServiceProxy implements InvocationHandler {
 //            }
 
             //发送TCP请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            //使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() -> VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
             return rpcResponse.getData();
         } catch (Exception e) {
             e.printStackTrace();

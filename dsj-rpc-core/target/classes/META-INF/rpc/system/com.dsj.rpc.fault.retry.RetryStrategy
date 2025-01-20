@@ -1,0 +1,2 @@
+no=com.dsj.rpc.fault.retry.NoRetryStrategy
+fixedInterval=com.dsj.rpc.fault.retry.FixedIntervalRetryStrategy
