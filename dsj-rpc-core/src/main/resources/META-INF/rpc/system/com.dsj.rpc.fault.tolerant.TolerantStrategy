@@ -1,0 +1,4 @@
+failBack=com.dsj.rpc.fault.tolerant.FailBackTolerantStrategy
+failFast=com.dsj.rpc.fault.tolerant.FailFastTolerantStrategy
+failOver=com.dsj.rpc.fault.tolerant.FailOverTolerantStrategy
+failSafe=com.dsj.rpc.fault.tolerant.FailSafeTolerantStrategy
