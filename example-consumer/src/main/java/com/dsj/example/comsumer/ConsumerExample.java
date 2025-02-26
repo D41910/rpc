@@ -2,13 +2,18 @@ package com.dsj.example.comsumer;
 
 import com.dsj.example.common.model.User;
 import com.dsj.example.common.service.UserService;
+import com.dsj.rpc.bootstrap.ConsumerBootstrap;
 import com.dsj.rpc.proxy.ServiceProxyFactory;
 
 /**
  * 简易服务消费者示例
  */
 public class ConsumerExample {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
+
+        //服务提供者初始化
+        ConsumerBootstrap.init();
+
         //获取代理
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();

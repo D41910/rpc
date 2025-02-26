@@ -15,8 +15,6 @@ import com.dsj.rpc.model.RpcResponse;
 import com.dsj.rpc.model.ServiceMetaInfo;
 import com.dsj.rpc.registry.Registry;
 import com.dsj.rpc.registry.RegistryFactory;
-import com.dsj.rpc.serializer.Serializer;
-import com.dsj.rpc.serializer.SerializerFactory;
 import com.dsj.rpc.server.tcp.VertxTcpClient;
 
 import java.lang.reflect.InvocationHandler;
